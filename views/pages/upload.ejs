@@ -1,0 +1,28 @@
+<%- include('../layouts/header', { title, active, categories }) %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Ingest</p>
+    <h1>Upload gambar baru</h1>
+  </div>
+</section>
+
+<%- include('../partials/alert', { message: errorMessage, type: 'alert-danger' }) %>
+
+<section class="upload-panel">
+  <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+    <label class="drop-zone" for="image" tabindex="0">
+      <input id="image" name="image" type="file" accept="image/jpeg,image/png,image/webp" required>
+      <span class="drop-kicker">JPG, JPEG, PNG, WEBP</span>
+      <strong>Pilih, drag & drop, atau paste gambar</strong>
+      <small>Tekan Ctrl+V di halaman ini untuk upload dari clipboard. Maksimal 10MB.</small>
+      <span class="upload-feedback" aria-live="polite"></span>
+    </label>
+    <button class="primary-action wide upload-submit" type="submit">
+      <span class="button-spinner" aria-hidden="true"></span>
+      <span class="button-label">Upload dan proses</span>
+    </button>
+  </form>
+</section>
+
+<%- include('../layouts/footer') %>

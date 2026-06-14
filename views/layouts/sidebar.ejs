@@ -1,0 +1,30 @@
+<aside class="sidebar">
+  <a class="brand" href="/">
+    <span class="brand-mark">AI</span>
+    <span>
+      <strong>Sticker Library</strong>
+      <small>OCR asset manager</small>
+    </span>
+  </a>
+
+  <nav class="main-nav">
+    <a class="<%= active === 'dashboard' ? 'is-active' : '' %>" href="/">Dashboard</a>
+    <a class="<%= active === 'images' ? 'is-active' : '' %>" href="/images">Gallery</a>
+    <a class="<%= active === 'upload' ? 'is-active' : '' %>" href="/upload">Upload</a>
+    <a class="<%= active === 'search' ? 'is-active' : '' %>" href="/search">Search</a>
+  </nav>
+
+  <section class="category-list">
+    <div class="sidebar-title">Kategori</div>
+    <% if (categories && categories.length) { %>
+      <% categories.forEach((category) => { %>
+        <a class="category-link <%= active === 'categories' ? 'is-muted' : '' %>" href="/categories/<%= encodeCategory(category.name) %>">
+          <span><%= category.name %></span>
+          <small><%= category.count %></small>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p class="sidebar-empty">Belum ada kategori.</p>
+    <% } %>
+  </section>
+</aside>

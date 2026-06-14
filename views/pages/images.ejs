@@ -1,0 +1,25 @@
+<%- include('../layouts/header', { title, active, categories }) %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Gallery</p>
+    <h1><%= pageHeading %></h1>
+  </div>
+  <a class="secondary-action" href="/upload">Tambah gambar</a>
+</section>
+
+<% if (images.length) { %>
+  <div class="gallery-grid">
+    <% images.forEach((image) => { %>
+      <%- include('../partials/image-card', { image }) %>
+    <% }) %>
+  </div>
+<% } else { %>
+  <div class="empty-state">
+    <h2><%= emptyMessage %></h2>
+    <p>Setelah upload, gambar akan muncul bersama OCR text, kategori, tags, dan tombol convert.</p>
+    <a class="primary-action" href="/upload">Upload gambar</a>
+  </div>
+<% } %>
+
+<%- include('../layouts/footer') %>

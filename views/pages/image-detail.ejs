@@ -1,0 +1,78 @@
+<%- include('../layouts/header', { title, active, categories }) %>
+
+<section class="page-heading detail-heading">
+  <div>
+    <p class="eyebrow">Detail</p>
+    <h1><%= image.originalName %></h1>
+  </div>
+  <div class="detail-actions">
+    <form action="/images/<%= image.id %>/convert" method="post">
+      <button class="secondary-action" type="submit">Convert WebP</button>
+    </form>
+    <% if (image.stickerObjectKey) { %>
+      <a class="primary-action" href="/images/<%= image.id %>/download-sticker">Download sticker</a>
+    <% } %>
+  </div>
+</section>
+
+<section class="detail-grid">
+  <div class="preview-stack">
+    <article class="preview-panel">
+      <div class="section-title">
+        <h2>Original</h2>
+        <span><%= image.mimeType %></span>
+      </div>
+      <img src="/images/<%= image.id %>/original" alt="<%= image.originalName %>">
+    </article>
+
+    <article class="preview-panel">
+      <div class="section-title">
+        <h2>Sticker</h2>
+        <span>512 x 512 WebP</span>
+      </div>
+      <% if (image.stickerUrl) { %>
+        <img class="sticker-preview" src="/images/<%= image.id %>/sticker" alt="Sticker <%= image.originalName %>">
+      <% } else { %>
+        <div class="empty-sticker">Belum dikonversi</div>
+      <% } %>
+    </article>
+  </div>
+
+  <aside class="detail-panel">
+    <div class="status-line">
+      <span class="status-badge status-<%= image.status %>"><%= statusLabel(image.status) %></span>
+      <span><%= formatFileSize(image.size) %></span>
+    </div>
+
+    <dl class="detail-list">
+      <dt>Filename</dt>
+      <dd><%= image.filename %></dd>
+      <dt>Original name</dt>
+      <dd><%= image.originalName %></dd>
+      <dt>Mime type</dt>
+      <dd><%= image.mimeType %></dd>
+      <dt>Category</dt>
+      <dd><span class="category-badge"><%= image.category || 'uncategorized' %></span></dd>
+      <dt>Tags</dt>
+      <dd class="tag-strip">
+        <% parseTags(image.tags).forEach((tag) => { %>
+          <%- include('../partials/tag-badge', { tag }) %>
+        <% }) %>
+      </dd>
+      <dt>Description</dt>
+      <dd><%= image.description || '-' %></dd>
+      <dt>OCR text</dt>
+      <dd class="ocr-text"><%= image.ocrText || '-' %></dd>
+      <% if (image.errorMessage) { %>
+        <dt>Error</dt>
+        <dd class="error-text"><%= image.errorMessage %></dd>
+      <% } %>
+    </dl>
+
+    <form action="/images/<%= image.id %>/delete" method="post" data-confirm="Hapus gambar ini dari database dan MinIO?">
+      <button class="danger-action" type="submit">Delete gambar</button>
+    </form>
+  </aside>
+</section>
+
+<%- include('../layouts/footer') %>

@@ -1,0 +1,40 @@
+<%- include('../layouts/header', { title, active, categories }) %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Search</p>
+    <h1>Temukan gambar dari teks, kategori, dan tags</h1>
+  </div>
+</section>
+
+<form class="search-page-form" action="/search" method="get">
+  <input type="search" name="q" value="<%= q %>" placeholder="Contoh: deadline, tugas, kuliah, panik, belum mulai">
+  <button class="primary-action" type="submit">Cari</button>
+</form>
+
+<% if (q) { %>
+  <div class="section-title search-result-title">
+    <h2>Hasil untuk "<%= q %>"</h2>
+    <span><%= images.length %> item</span>
+  </div>
+
+  <% if (images.length) { %>
+    <div class="gallery-grid">
+      <% images.forEach((image) => { %>
+        <%- include('../partials/image-card', { image }) %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state">
+      <h2>Tidak ada hasil</h2>
+      <p>Coba keyword lain dari OCR text, nama file, kategori, deskripsi, atau tags.</p>
+    </div>
+  <% } %>
+<% } else { %>
+  <div class="empty-state compact">
+    <h2>Masukkan keyword pencarian</h2>
+    <p>Search membaca filename, original name, OCR text, description, category, dan tags.</p>
+  </div>
+<% } %>
+
+<%- include('../layouts/footer') %>

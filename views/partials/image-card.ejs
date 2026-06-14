@@ -1,0 +1,33 @@
+<article class="image-card">
+  <a class="image-thumb" href="/images/<%= image.id %>">
+    <% if (image.originalObjectKey) { %>
+      <img src="/images/<%= image.id %>/original" alt="<%= image.originalName %>">
+    <% } else { %>
+      <span>No preview</span>
+    <% } %>
+  </a>
+  <div class="image-card-body">
+    <div class="card-row">
+      <h3 title="<%= image.originalName %>"><%= image.originalName %></h3>
+      <span class="status-badge status-<%= image.status %>"><%= statusLabel(image.status) %></span>
+    </div>
+    <div class="meta-line">
+      <span class="category-badge"><%= image.category || 'uncategorized' %></span>
+      <span><%= formatFileSize(image.size) %></span>
+    </div>
+    <div class="tag-strip">
+      <% parseTags(image.tags).slice(0, 5).forEach((tag) => { %>
+        <%- include('tag-badge', { tag }) %>
+      <% }) %>
+    </div>
+    <div class="card-actions">
+      <a class="ghost-button" href="/images/<%= image.id %>">Detail</a>
+      <form action="/images/<%= image.id %>/convert" method="post">
+        <button class="ghost-button" type="submit">Convert</button>
+      </form>
+      <!-- <% if (image.stickerObjectKey) { %>
+        <a class="ghost-button accent" href="/images/<%= image.id %>/download-sticker">Download</a>
+      <% } %> -->
+    </div>
+  </div>
+</article>

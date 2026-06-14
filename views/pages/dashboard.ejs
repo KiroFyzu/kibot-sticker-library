@@ -1,0 +1,51 @@
+<%- include('../layouts/header', { title, active, categories }) %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Library Overview</p>
+    <h1>Dashboard asset stiker</h1>
+  </div>
+  <a class="secondary-action" href="/images">Lihat gallery</a>
+</section>
+
+<section class="stat-grid">
+  <article class="stat-card">
+    <small>Total gambar</small>
+    <strong><%= stats.totalImages %></strong>
+  </article>
+  <article class="stat-card">
+    <small>Stiker siap pakai</small>
+    <strong><%= stats.totalStickers %></strong>
+  </article>
+  <article class="stat-card">
+    <small>Sedang processing</small>
+    <strong><%= stats.totalProcessing %></strong>
+  </article>
+  <article class="stat-card">
+    <small>Total kategori</small>
+    <strong><%= stats.totalCategories %></strong>
+  </article>
+</section>
+
+<section class="section-block">
+  <div class="section-title">
+    <h2>Gambar terbaru</h2>
+    <span><%= latestImages.length %> item</span>
+  </div>
+
+  <% if (latestImages.length) { %>
+    <div class="gallery-grid">
+      <% latestImages.forEach((image) => { %>
+        <%- include('../partials/image-card', { image }) %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state">
+      <h2>Library masih kosong</h2>
+      <p>Upload gambar pertama untuk memulai OCR, tagging otomatis, dan konversi stiker WhatsApp.</p>
+      <a class="primary-action" href="/upload">Upload gambar</a>
+    </div>
+  <% } %>
+</section>
+
+<%- include('../layouts/footer') %>

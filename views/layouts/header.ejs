@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title ? `${title} - ${appName}` : appName %></title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <%- include('sidebar', { active, categories }) %>
+      <main class="workspace">
+        <header class="topbar">
+          <form class="global-search" action="/search" method="get">
+            <input type="search" name="q" value="<%= typeof q !== 'undefined' ? q : '' %>" placeholder="Cari teks OCR, kategori, tag, nama file...">
+            <button type="submit">Search</button>
+          </form>
+          <a class="primary-action" href="/upload">Upload</a>
+        </header>

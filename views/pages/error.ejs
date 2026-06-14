@@ -1,0 +1,11 @@
+<%- include('../layouts/header', { title, active, categories }) %>
+
+<section class="empty-state error-page">
+  <h1><%= message %></h1>
+  <% if (error && error.message) { %>
+    <p><%= error.message %></p>
+  <% } %>
+  <a class="primary-action" href="/">Kembali ke dashboard</a>
+</section>
+
+<%- include('../layouts/footer') %>

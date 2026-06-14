@@ -1,0 +1,42 @@
+{
+  "name": "ai-sticker-library",
+  "version": "1.0.0",
+  "description": "AI Sticker Library - Express, EJS, Prisma, SQLite, MinIO, OCR, and WhatsApp sticker conversion.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "minio",
+    "prisma",
+    "sqlite",
+    "ocr",
+    "stickers"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.0",
+    "method-override": "^3.0.0",
+    "minio": "^8.0.5",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.33.5",
+    "tesseract.js": "^5.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prisma": "^5.22.0"
+  }
+}

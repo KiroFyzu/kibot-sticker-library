@@ -1,0 +1,13 @@
+node_modules/
+.env
+dev.db
+dev.db-journal
+tmp/uploads/*
+!tmp/uploads/.gitkeep
+tmp/ocr/
+tmp/tesseract/
+*.traineddata
+prisma/dev.db
+prisma/dev.db-journal
+.DS_Store
+npm-debug.log*
